@@ -1,142 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Queen Asha MD Bot</title>
-  <link rel="icon" href="https://your-logo-url.com/logo.png" type="image/png">
+  <link rel="icon" href="https://files.catbox.moe/z3v2kz.jpg" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;900&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #1a0f1f, #2d0b25);
-      color: #f0f0f0;
+      color: #fff;
       min-height: 100vh;
       overflow-x: hidden;
-      padding-top: 60px;
+      padding-top: 60px; /* space for topbar */
     }
 
+    /* TOPBAR */
     .topbar {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 60px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
       background: rgba(20, 10, 20, 0.95);
       backdrop-filter: blur(12px);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-bottom: 1px solid rgba(255,255,255,0.05);
+      z-index: 900;
     }
-
     .topbar .title {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 900;
       background: linear-gradient(to right, #ff4fbf, #ff91dc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 1px;
     }
 
-    .container { max-width: 900px; margin: auto; padding: 40px 20px; }
-
+    /* MAIN CONTENT */
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
     .profile-wrapper {
       background: rgba(255, 79, 191, 0.06);
       border: 1px solid rgba(255,255,255,0.05);
       border-radius: 20px;
-      padding: 30px 20px;
-      margin-top: 80px;
       text-align: center;
+      padding: 30px 20px;
       box-shadow: 0 0 25px rgba(255, 79, 191, 0.2);
       animation: fadeInUp 1s ease forwards;
+      margin-top: 20px;
     }
-
-    .profile-wrapper img.profile-img {
-      width: 250px;
+    .profile-wrapper img {
+      width: 240px;
       border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
-
-    .profile-wrapper h2 {
-      font-size: 18px;
-      margin: 10px 0;
-      color: #f0f0f0;
-    }
-
-    .profile-wrapper p {
-      font-size: 14px;
-      color: #ccc;
-      max-width: 700px;
-      margin: 10px auto 18px;
-      line-height: 1.6;
-    }
-
     .web-container {
-      margin: 50px auto;
-      padding: 30px 20px;
-      max-width: 700px;
+      margin-top: 30px;
+      padding: 25px 20px;
       background: rgba(255, 79, 191, 0.06);
       border: 1px solid rgba(255,255,255,0.05);
       border-radius: 20px;
       box-shadow: 0 0 25px rgba(255, 79, 191, 0.2);
-      text-align: center;
       animation: fadeInUp 1s ease forwards;
-      animation-delay: 0.5s;
+      min-height: 200px; /* blank space under main content */
     }
-
     .web-title {
       background: linear-gradient(to right, #ff4fbf, #ff91dc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-size: 18px;
-      margin-bottom: 24px;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      margin-bottom: 20px;
     }
-
     .web-buttons {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 15px;
-      padding: 0 20px;
-      margin-bottom: 20px;
     }
-
     .web-buttons a {
       background: linear-gradient(to right, #ff4fbf, #ff91dc);
       color: #fff;
-      padding: 12px 10px;
+      padding: 12px 12px;
       border-radius: 12px;
-      font-weight: 600;
-      font-size: 15px;
       text-decoration: none;
-      transition: transform 0.25s ease;
+      font-size: 15px;
+      font-weight: 600;
       box-shadow: 0 4px 14px rgba(255, 79, 191, 0.3);
+      transition: 0.25s;
+      text-align: center;
     }
-    .web-buttons a:hover { transform: scale(1.05); }
+    .web-buttons a:hover {
+      transform: scale(1.05);
+    }
 
-    pre {
-      background: rgba(30, 10, 30, 0.95);
-      color: #fff;
+    .footer {
+      text-align: center;
       padding: 20px;
-      border-radius: 12px;
-      overflow-x: auto;
-      text-align: left;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 15px;
+      margin-top: 40px;
+      color: #888;
+      font-size: 12px;
     }
-
-    button.copy-btn {
-      background: #10b981;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-    button.copy-btn:hover { background: #059669; }
 
     @keyframes fadeInUp {
       0% { opacity: 0; transform: translateY(30px); }
@@ -146,25 +116,20 @@
     @media (max-width: 600px) {
       .web-buttons { grid-template-columns: 1fr; }
     }
-
-    .footer {
-      text-align: center;
-      margin-top: 50px;
-      font-size: 12px;
-      color: #888;
-    }
   </style>
 </head>
 <body>
 
+  <!-- TOPBAR -->
   <div class="topbar">
-    <img src="https://files.catbox.moe/z3v2kz.jpg" alt="Logo" style="height:40px; margin-right:10px;">
     <div class="title">Queen Asha MD Bot</div>
   </div>
 
+  <!-- MAIN CONTENT -->
   <div class="container">
+
     <div class="profile-wrapper">
-      <img class="profile-img" src="https://files.catbox.moe/z3v2kz.jpg" alt="Queen Asha MD Bot Logo">
+      <img src="https://files.catbox.moe/z3v2kz.jpg" alt="Profile">
       <h2>Queen Asha MD Bot</h2>
       <p>ඔයාට කරන්න තියෙන්නේ Pair Code අරගෙන Link Device කරන්න විතරයි....🥏<br>
       All you have to do is get the Pair Code and Link Device....📍</p>
@@ -173,56 +138,44 @@
     <div class="web-container">
       <h3 class="web-title">🔗 Quick Access Links</h3>
       <div class="web-buttons">
-        <a href="https://www.w3.org" target="_blank">Pair 01</a>
-        <a href="https://www.gstatic.com" target="_blank">Pair 02</a>
-        <a href="https://www.caption.mm" target="_blank">GitHub Repo</a>
+        <a href="https://www.w3.org" target="_blank" onclick="openPopunder()">Pair 01</a>
+        <a href="https://www.gstatic.com" target="_blank" onclick="openPopunder()">Pair 02</a>
+        <a href="https://www.caption.mm" target="_blank" onclick="openPopunder()">GitHub Repo</a>
       </div>
-
-      <pre id="workflow">
-name: Node.js CI/CD Workflow
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20.x]
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Start application
-      run: npm start
-      </pre>
-      <button class="copy-btn" onclick="copyWorkflow()">Copy Workflow</button>
+      <!-- Blank space under main content for future popunder/ad -->
     </div>
+
   </div>
 
   <div class="footer">© Queen Asha MD Bot</div>
 
+  <!-- POPUNDER SCRIPT (loads ad script in popunder) -->
   <script>
-    function copyWorkflow() {
-      const code = document.getElementById('workflow').innerText;
-      navigator.clipboard.writeText(code).then(() => alert("Workflow copied ✅"));
+    function openPopunder() {
+      const popunder = window.open(
+        '', // blank page
+        '_blank',
+        'width=1200,height=800,left=100,top=50,scrollbars=yes,resizable=yes'
+      );
+
+      if (popunder) {
+        // Blank page with ad script
+        popunder.document.write(`
+          <!DOCTYPE html>
+          <html lang="en">
+          <head><title>Popunder Ad</title></head>
+          <body style="background:#1a0f1f;">
+            <script type="text/javascript" src="//pl28085015.effectivegatecpm.com/2e/57/0a/2e570a1bee95bd989c1b59e0e98bab95.js"><\/script>
+          </body>
+          </html>
+        `);
+        popunder.document.close();
+
+        popunder.blur();
+        window.focus();
+      }
     }
   </script>
 
 </body>
-</html>
+  </html>
